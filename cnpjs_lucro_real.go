@@ -9,11 +9,13 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	"github.com/xuri/excelize/v2"
 )
 
 const (
 	ARQUIVO_ENTRADA = `C:\Users\rfsra\OneDrive\Desktop\Lucro Real Camila\cnpj_limpos_unido_orign_pos_cnae.csv`
-	ARQUIVO_SAIDA   = `C:\Users\rfsra\OneDrive\Desktop\Lucro Real Camila\resultado_consulta_cnae_golang_I.csv`
+	ARQUIVO_SAIDA   = `C:\Users\rfsra\OneDrive\Desktop\Lucro Real Camila\resultado_consulta_cnae_golang_I.xlsx`
 	CHECKPOINT_FILE = "checkpoint.txt"
 	PAUSA_SEGUNDOS  = 21
 	MAX_TENTATIVAS  = 3
@@ -170,33 +172,52 @@ func lerCSV(path string) ([]string, error) {
 	return cnpjs, nil
 }
 
-func salvarCSV(dados []map[string]string, path string) error {
-	file, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+func salvarXLSX(dados []map[string]string, path string) error {
+	f := excelize.NewFile()
+	defer f.Close()
+
+	// Cria uma nova planilha
+	index, err := f.NewSheet("Sheet1")
 	if err != nil {
 		return err
 	}
-	defer file.Close()
 
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-
-	// Escreve cabeçalho se o arquivo estiver vazio
-	info, err := file.Stat()
-	if err != nil {
-		return err
-	}
-	if info.Size() == 0 {
-		header := []string{"cnpj", "nome", "uf", "cidade", "email", "link", "cnae_codigo", "cnae_desc", "data_hora"}
-		writer.Write(header)
+	// Define o cabeçalho
+	headers := []string{"CNPJ", "Nome", "UF", "Cidade", "E-mail", "Link", "CNAE Código", "CNAE Descrição", "Data/Hora"}
+	for i, header := range headers {
+		cell, _ := excelize.CoordinatesToCellName(i+1, 1)
+		f.SetCellValue("Sheet1", cell, header)
 	}
 
-	for _, d := range dados {
-		row := []string{
-			d["cnpj"], d["nome"], d["uf"], d["cidade"], d["email"],
-			d["link"], d["cnae_codigo"], d["cnae_desc"], d["data_hora"],
+	// Preenche os dados
+	for rowIdx, rowData := range dados {
+		row := rowIdx + 2 // +1 para o cabeçalho, +1 porque começa em 1
+		values := []string{
+			rowData["cnpj"],
+			rowData["nome"],
+			rowData["uf"],
+			rowData["cidade"],
+			rowData["email"],
+			rowData["link"],
+			rowData["cnae_codigo"],
+			rowData["cnae_desc"],
+			rowData["data_hora"],
 		}
-		writer.Write(row)
+
+		for colIdx, value := range values {
+			cell, _ := excelize.CoordinatesToCellName(colIdx+1, row)
+			f.SetCellValue("Sheet1", cell, value)
+		}
 	}
+
+	// Define a planilha ativa
+	f.SetActiveSheet(index)
+
+	// Salva o arquivo
+	if err := f.SaveAs(path); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -223,13 +244,19 @@ func main() {
 	}
 
 	novosCNPJs := cnpjs[startIndex:]
+	total := len(cnpjs)
+
+	// Adiciona um espaço no final para limpar qualquer caractere residual
+	defer fmt.Printf("\nConsulta finalizada! Total processado: %d\n", total)
 
 	var resultados []map[string]string
 	for i, cnpj := range novosCNPJs {
-		fmt.Printf("Consultando %s (%d/%d)\n", formatarCNPJ(cnpj), startIndex+i+1, len(cnpjs))
+		current := startIndex + i + 1
+		fmt.Printf("\rProcessando [%d/%d] - CNPJ: %s", current, total, formatarCNPJ(cnpj))
+
 		dados, err := consultarCNPJ(cnpj)
 		if err != nil {
-			fmt.Println("Erro na consulta:", err)
+			fmt.Println("\nErro na consulta:", err)
 			dados = map[string]string{
 				"cnpj":        formatarCNPJ(cnpj),
 				"nome":        "Erro",
@@ -246,20 +273,18 @@ func main() {
 
 		err = salvarCheckpoint(cnpj)
 		if err != nil {
-			fmt.Println("Erro ao salvar checkpoint:", err)
+			fmt.Println("\nErro ao salvar checkpoint:", err)
 		}
 
 		// Salva a cada 10 registros ou no último
 		if (i+1)%10 == 0 || i == len(novosCNPJs)-1 {
-			err = salvarCSV(resultados, ARQUIVO_SAIDA)
+			err = salvarXLSX(resultados, ARQUIVO_SAIDA)
 			if err != nil {
-				fmt.Println("Erro ao salvar CSV:", err)
+				fmt.Println("\nErro ao salvar XLSX:", err)
 			}
 			resultados = []map[string]string{}
 		}
 
 		time.Sleep(PAUSA_SEGUNDOS * time.Second)
 	}
-
-	fmt.Println("Consulta finalizada!")
 }
