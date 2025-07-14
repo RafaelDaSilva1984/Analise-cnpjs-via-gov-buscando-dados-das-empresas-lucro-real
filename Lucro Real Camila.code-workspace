@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../Cnpj_pdnz"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Lucro Real Camila"
+  }
+}
