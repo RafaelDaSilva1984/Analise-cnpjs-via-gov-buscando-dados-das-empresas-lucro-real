@@ -84,4 +84,5 @@ Sinta-se à vontade para abrir issues com sugestões ou melhorias.
 📄 Licença
 Distribuído sob a licença MIT. Veja LICENSE para mais informações.
 
+
 ```
