@@ -25,6 +25,7 @@ Os dados coletados são salvos em Excel e tratados com funcionalidades como chec
 ## 🛠️ Como usar
 
 1. Edite o caminho dos arquivos no script principal, se necessário:
+
    - Entrada: `input_data/cnpj_limpos.csv`
    - Saída: `output_data_cnae/resultado_consulta_cnae.xlsx`
    - Erros: `erros.xlsx`
@@ -57,28 +58,6 @@ pip install -r requirements.txt
 📚 Bibliotecas utilizadas
 requests
 
-<<<<<<< HEAD
-Tecnologias usadas
-Python 3
-
-Requests
-
-Pandas
-
-Openpyxl
-
-tqdm
-
-API pública de CNPJ
-
-Como contribuir
-Abra issues ou envie pull requests.
-
-
-
-
-
-=======
 pandas
 
 openpyxl
@@ -104,4 +83,5 @@ Sinta-se à vontade para abrir issues com sugestões ou melhorias.
 
 📄 Licença
 Distribuído sob a licença MIT. Veja LICENSE para mais informações.
->>>>>>> dc9b98e39912d59aaed605271a7e9603c319953b
+
+```
