@@ -1,0 +1,14 @@
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.env
+*.sqlite3
+*.log
+output_data_cnae/
+input_data/
+checkpoint.txt
+*.xlsx
+

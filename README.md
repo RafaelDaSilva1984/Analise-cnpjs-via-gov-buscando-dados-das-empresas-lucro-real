@@ -1,46 +1,25 @@
-﻿# Analise-cnpjs-via-gov-buscando-dados-das-empresas-lucro-real
 
-Há 6 dias • Visível a todos, dentro ou fora do LinkedIn
+# Análise de CNPJs - Busca via API Pública
 
-Objetivo Inicial
+Projeto em Python para consultar dados de CNPJs usando a API pública do governo.  
+Salva resultados em Excel, com tratamento de erros e checkpoint para continuidade.
 
-Obter dados de empresas cadastradas sob o regime tributário Lucro Real, com foco nas seguintes informações:
-CNPJ
-UF (Estados)
-Cidade
-E-mail de contato
-Esses dados são extraídos e organizados para posterior análise estratégica e visualização.
+## Como usar
 
-Ferramentas Utilizadas no Projeto
-Python
-Desenvolvimento de um script automatizado para:
-Ler CNPJs de um arquivo CSV.
-Fazer requisições à API pública.
-Processar e limpar os dados obtidos.
-Exportar os dados prontos para análise.
-Power BI
-Criação de um dashboard interativo, com:
-Mapas e gráficos para análise regional.
-Filtros por cidade, estado e outros critérios.
+1. Coloque seu arquivo CSV com CNPJs na pasta  (ou ajuste o caminho no script).  
+2. Execute o script Python principal.  
+3. Os resultados serão salvos na pasta .  
+4. Veja os erros no arquivo .
 
-API publica.cnpj.ws/cnpj
-Fonte de dados atualizados com:
-Informações cadastrais de empresas brasileiras.
-Situação cadastral, natureza jurídica, endereço, contato e muito mais.
+## Tecnologias usadas
 
-HTTP
-Utilização do protocolo HTTP para:
-Enviar requisições GET à API.
-Controlar erros e limites de acesso.
-Garantir a automação fluida entre Python e a API.
+- Python 3  
+- Requests  
+- Pandas  
+- API pública de CNPJ
 
-Parte II – Expansão com Segmentação via CNAE
-Com o objetivo de enriquecer a análise, a segunda fase do projeto inclui:
-CNPJ
-UF
-Cidade
-E-mail de contato
-CNAE principal da empresa (atividade econômica)
-Link de pesquisa para o CNAE (facilitando acesso a mais detalhes via buscadores como Google)
+## Como contribuir
 
-Essa adição permitirá análises por setor de atividade, filtragens mais refinadas e estratégias mais personalizadas.
+Abra issues ou envie pull requests.
+
+
