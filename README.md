@@ -17,3 +17,23 @@ Use o `requirements.txt` para instalar todas as bibliotecas necessárias:
 ```bash
 pip install -r requirements.txt
 
+Tecnologias usadas
+Python 3
+
+Requests
+
+Pandas
+
+Openpyxl
+
+tqdm
+
+API pública de CNPJ
+
+Como contribuir
+Abra issues ou envie pull requests.
+
+
+
+
+
