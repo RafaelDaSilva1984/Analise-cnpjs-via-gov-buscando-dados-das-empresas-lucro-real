@@ -86,4 +86,4 @@ Distribuído sob a licença MIT. Veja LICENSE para mais informações.
 
 
 ```
-![Fluxo Python](/home/silva/1-Projeto_Api_Lucro_Real/assets/)
+![Fluxo Python](/home/silva/1-Projeto_Api_Lucro_Real/assets/python.jpeg)
