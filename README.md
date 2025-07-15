@@ -86,3 +86,4 @@ Distribuído sob a licença MIT. Veja LICENSE para mais informações.
 
 
 ```
+![Fluxo Python](assets/python_2.jpeg)
