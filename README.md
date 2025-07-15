@@ -1,4 +1,5 @@
 ﻿# Analise-cnpjs-via-gov-buscando-dados-das-empresas-lucro-real
+
 Há 6 dias • Visível a todos, dentro ou fora do LinkedIn
 
 Objetivo Inicial
