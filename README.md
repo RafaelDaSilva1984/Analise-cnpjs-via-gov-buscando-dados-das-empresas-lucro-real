@@ -1,40 +1,84 @@
-# Análise de CNPJs - Busca via API Pública
+# 📊 Análise de CNPJs - Consulta via API Pública
 
-Projeto em Python para consultar dados de CNPJs usando uma API pública do governo.  
-Salva resultados em Excel, com tratamento de erros e checkpoint para continuidade.
+Este projeto automatiza a consulta de **dados públicos de empresas** brasileiras a partir de CNPJs, utilizando a API gratuita do site [publica.cnpj.ws](https://publica.cnpj.ws).  
+Os dados coletados são salvos em Excel e tratados com funcionalidades como checkpoint, salvamento em lote, remoção de duplicatas e registro de erros.
 
-## Como usar
+---
 
-1. Coloque seu arquivo CSV com CNPJs na pasta `input_data` (ou ajuste o caminho no script).
-2. Execute o script Python principal.
-3. Os resultados serão salvos na pasta `output_data_cnae`.
-4. Veja os erros no arquivo `erros.xlsx`.
+## 🚀 Funcionalidades principais
 
-# Tecnologias usadas
-Python 3
+- 🔎 Consulta automática de CNPJs via API pública.
+- 💾 Salvamento dos dados em um arquivo `.xlsx`.
+- 🧠 Tratamento inteligente de erros com reintentas (timeout, 429, 404, etc.).
+- 📉 Registro de erros em arquivo separado (`erros.xlsx`).
+- ⏱️ Sistema de checkpoint para continuar do último CNPJ consultado.
+- 🧹 Remoção automática de CNPJs duplicados após cada lote.
+- 📊 Coleta de dados como:
+  - Nome da empresa
+  - UF e cidade
+  - E-mail
+  - Código e descrição do CNAE
+  - Link de acesso externo (`https://cnpj.biz`)
 
-Requests
+---
 
-Pandas
+## 🛠️ Como usar
 
-Openpyxl
+1. Edite o caminho dos arquivos no script principal, se necessário:
+   - Entrada: `input_data/cnpj_limpos.csv`
+   - Saída: `output_data_cnae/resultado_consulta_cnae.xlsx`
+   - Erros: `erros.xlsx`
+
+2. Coloque um arquivo `.csv` com os CNPJs a serem consultados (1 por linha ou em colunas, o script detecta).
+
+3. Execute o script principal:
+
+```bash
+python main.py
+📦 Estrutura esperada do projeto
+pgsql
+Copiar
+Editar
+📁 1-Projeto_Api_Lucro_Real/
+├── input_data/
+│   └── cnpj_limpos.csv
+├── output_data_cnae/
+│   └── resultado_consulta_cnae.xlsx
+├── erros.xlsx
+├── checkpoint.txt
+├── main.py
+├── requirements.txt
+└── README.md
+🧪 Instalar dependências
+bash
+Copiar
+Editar
+pip install -r requirements.txt
+📚 Bibliotecas utilizadas
+requests
+
+pandas
+
+openpyxl
 
 tqdm
 
-API pública de CNPJ
+datetime
 
-# Como contribuir
+os / time
 
-Abra issues ou envie pull requests.
+🛡️ Boas práticas
+O script salva os dados a cada 5 consultas para evitar perda.
 
-# Licença
-Este projeto está licenciado sob a Licença MIT.
+A cada 150 novos CNPJs processados, remove duplicatas automaticamente.
 
-## Instalar dependências
+Em caso de erro (por exemplo, 429 ou 404), ele aguarda e tenta novamente.
 
-Use o `requirements.txt` para instalar todas as bibliotecas necessárias:
+Você pode parar e continuar a execução sem perder progresso (graças ao checkpoint).
 
-```bash
-pip install -r requirements.txt 
+🤝 Contribuição
+Pull requests são bem-vindos!
+Sinta-se à vontade para abrir issues com sugestões ou melhorias.
 
-
+📄 Licença
+Distribuído sob a licença MIT. Veja LICENSE para mais informações.
