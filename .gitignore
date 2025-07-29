@@ -7,8 +7,20 @@ __pycache__/
 *.env
 *.sqlite3
 *.log
-output_data_cnae/
-input_data/
+
+# Ignora tudo da pasta output_data_cnae, exceto os arquivos .xlsx
+output_data_cnae/*
+!output_data_cnae/*.xlsx
+
+# Ignora tudo da pasta input_data, exceto os arquivos .csv
+input_data/*
+!input_data/*.csv
+
+# Ignora checkpoint e arquivos temporários
 checkpoint.txt
+
+# Ignora outros arquivos xlsx fora da pasta output_data_cnae
+# (mas deixa os que explicitamente foram liberados acima)
 *.xlsx
+
 
