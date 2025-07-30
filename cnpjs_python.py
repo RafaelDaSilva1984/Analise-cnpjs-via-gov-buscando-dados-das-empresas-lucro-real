@@ -10,12 +10,13 @@ from datetime import datetime
 from tqdm import tqdm
 
 # === Caminhos dos arquivos ===
-ARQUIVO_ENTRADA = r'/home/rafa2025/Documentos/Rafa_Cnpjs/Analise-cnpjs-via-gov-buscando-dados-das-empresas-lucro-real/input_data/cnpj_limpos_unido_orign_pos_cnae.csv'
-ARQUIVO_SAIDA = r'/home/rafa2025/Documentos/Rafa_Cnpjs/Analise-cnpjs-via-gov-buscando-dados-das-empresas-lucro-real/output_data_cnae/cnpj_limpos_.xlsx'
-CAMINHO_ERROS = r'/home/rafa2025/Documentos/Rafa_Cnpjs/Analise-cnpjs-via-gov-buscando-dados-das-empresas-lucro-real/output_data_cnae/cnpj_limpos_sem_duplc_.xlsx'
+ARQUIVO_ENTRADA = r'input_data/30-07-2025 initial  05407709000120.csv'
+ARQUIVO_SAIDA = r'output_data_cnae/cnpj_limpos_.xlsx'
+CAMINHO_ERROS = r'erros.xlsx'
 CHECKPOINT_FILE = 'checkpoint.txt'
 
 def limpar_cnpj(cnpj):
+    ''
     cnpj_str = str(cnpj).zfill(14)
     return ''.join(filter(str.isdigit, cnpj_str))
 
