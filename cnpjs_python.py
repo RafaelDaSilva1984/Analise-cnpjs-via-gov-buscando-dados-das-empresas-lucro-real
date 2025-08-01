@@ -61,7 +61,7 @@ def consultar_cnpj(cnpj):
                 registrar_erro_em_excel(cnpj, "CNPJ não encontrado (404)")
                 break
             if response.status_code == 429:
-                time.sleep(25)
+                time.sleep(15) #anterior 25
                 tentativas += 1
                 continue
             response.raise_for_status()
@@ -83,7 +83,7 @@ def consultar_cnpj(cnpj):
             print(f'[ERRO] {formatar_cnpj(cnpj)} - {e}')
             registrar_erro_em_excel(cnpj, str(e))
             tentativas += 1
-            time.sleep(15)
+            time.sleep(13) #anterior 15
 
     print(f'[ERRO] Falha após 3 tentativas: {formatar_cnpj(cnpj)}')
     registrar_erro_em_excel(cnpj, "Falha após 3 tentativas ou erro desconhecido")
@@ -172,7 +172,7 @@ def localizar_dados_lucro_real():
             remover_duplicatas_final()
             contador_para_remover_duplicatas = 0
 
-        time.sleep(21)
+        time.sleep(14) #anterior 21
 
 if __name__ == '__main__':
     localizar_dados_lucro_real()
