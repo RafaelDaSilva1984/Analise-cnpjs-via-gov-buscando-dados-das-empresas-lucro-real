@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 # --- Configurações ---
-ARQUIVO_CNPJS = "erros.xlsx"
+ARQUIVO_CNPJS = "Erros/erros.xlsx"
 PASTA_SAIDA = "output_data_cnae"
 ARQUIVO_CHECKPOINT = "checkpoint_erros.txt"
 ARQUIVO_SAIDA = f"{PASTA_SAIDA}/resultado_erros_atualizado.xlsx"
