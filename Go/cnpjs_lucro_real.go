@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	ARQUIVO_ENTRADA = `C:\Users\rfsra\OneDrive\Desktop\Lucro Real Camila\cnpj_limpos_unido_orign_pos_cnae.csv`
-	ARQUIVO_SAIDA   = `C:\Users\rfsra\OneDrive\Desktop\Lucro Real Camila\resultado_consulta_cnae_golang_I.xlsx`
+	ARQUIVO_ENTRADA = `input_data/30-07-2025 initial  05407709000120.csv`
+	ARQUIVO_SAIDA   = `esultado_consulta_cnae_golang_I.xlsx`
 	CHECKPOINT_FILE = "checkpoint.txt"
 	PAUSA_SEGUNDOS  = 21
 	MAX_TENTATIVAS  = 3
