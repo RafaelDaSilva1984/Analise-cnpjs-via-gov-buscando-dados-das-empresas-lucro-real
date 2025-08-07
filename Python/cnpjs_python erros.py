@@ -11,7 +11,7 @@ PASTA_SAIDA = "output_data_cnae"
 ARQUIVO_CHECKPOINT = "checkpoint_erros.txt"
 ARQUIVO_SAIDA = f"{PASTA_SAIDA}/resultado_erros_atualizado.xlsx"
 URL_API = "https://publica.cnpj.ws/cnpj/{}"
-TEMPO_ENTRE_REQUISICOES = 12.5  # segundos
+TEMPO_ENTRE_REQUISICOES = 15  # segundos
 MAX_TENTATIVAS = 3
 
 # --- Funções auxiliares ---
