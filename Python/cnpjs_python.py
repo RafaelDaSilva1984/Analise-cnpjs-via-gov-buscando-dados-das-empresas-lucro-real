@@ -53,6 +53,7 @@ def consultar_cnpj(cnpj):
     url = f'https://publica.cnpj.ws/cnpj/{cnpj}'
     tentativas = 0
     link_cnpj = f'https://cnpj.biz/{str(cnpj).zfill(14)}'
+    
     while tentativas < 3:
         try:
             response = requests.get(url, timeout=35)
