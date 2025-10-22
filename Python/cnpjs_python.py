@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 # === Caminhos dos arquivos ===
 ARQUIVO_ENTRADA = r'input_data/30-07-2025 initial  05407709000120.csv'
-ARQUIVO_SAIDA = r'output_data_cnae/cnpj_limpos_.xlsx'
+ARQUIVO_SAIDA = r'output_data_cnae/cnpj_limpos_october_2025.xlsx'
 CAMINHO_ERROS = r'Erros/erros.xlsx'
 CHECKPOINT_FILE = 'Checkpoint/checkpoint.txt'
 
